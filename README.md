@@ -127,3 +127,30 @@ erDiagram
         string byDay
     }
 ```
+
+## Configuration Management
+
+The app uses environment-specific configuration files for managing secrets and environment variables:
+
+```plaintext
+ios/Sources/CalendarCore/Resources/
+├── Config.development.plist.template
+├── Config.staging.plist.template
+└── Config.production.plist.template
+```
+
+### Setup
+
+1. Copy the template files and remove the `.template` extension
+2. Update the values in each environment file
+3. Files are gitignored to prevent committing sensitive data
+
+### Usage
+
+The configuration is managed through `AppConfig` in CalendarCore module and automatically loads the correct environment based on build configuration:
+- DEBUG builds use development configuration
+- RELEASE builds use production configuration
+
+### Adding New Configuration
+
+Add new keys to the template files and update the `AppConfig` struct in CalendarCore module.
