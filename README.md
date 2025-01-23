@@ -49,6 +49,7 @@ graph LR
 ```
 
 ## Project Structure
+```
 Calendar/
 ├── App/
 │   └── CalendarApp.swift
@@ -81,6 +82,7 @@ Calendar/
 └── Resources/
     ├── Assets/
     └── Localization/
+```
 
 ## Data Flow
 ```mermaid
