@@ -1,4 +1,5 @@
 import Foundation
+import CalendarDomain
 
 @MainActor
 public class MonthViewModel: ObservableObject {

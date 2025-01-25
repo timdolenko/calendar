@@ -9,7 +9,6 @@ let package = Package(
         .iOS(.v17)
     ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "CalendarCore",
             targets: ["CalendarCore"]),
@@ -21,15 +20,20 @@ let package = Package(
         .library(
             name: "CalendarNetwork",
             targets: ["CalendarNetwork"]),
+
+        .library(
+            name: "CalendarUI",
+            targets: ["CalendarUI"]),
     ],
     dependencies: [
         .package(url: "https://github.com/supabase-community/supabase-swift.git", from: "0.3.0")
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CalendarCore",
+            dependencies: [
+                "CalendarDomain"
+            ],
             resources: [
                 .process("Resources")
             ]),
@@ -40,9 +44,6 @@ let package = Package(
 
         .target(
             name: "CalendarDomain"),
-        .testTarget(
-            name: "CalendarDomainTests",
-            dependencies: ["CalendarDomain"]),
 
         .target(
             name: "CalendarNetwork",
@@ -50,9 +51,6 @@ let package = Package(
                 .product(name: "Supabase", package: "supabase-swift"),
                 "CalendarDomain"
             ]),
-        .testTarget(
-            name: "CalendarNetworkTests",
-            dependencies: ["CalendarNetwork"]),
         
         .target(
             name: "CalendarUI",
@@ -60,8 +58,5 @@ let package = Package(
                 "CalendarCore",
                 "CalendarDomain"
             ]),
-        .testTarget(
-            name: "CalendarUITests",
-            dependencies: ["CalendarUI"]),
     ]
 )

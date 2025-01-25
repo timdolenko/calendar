@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6693BD8E2D45341700401A3D /* CalendarCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6693BD8D2D45341700401A3D /* CalendarCore */; };
+		6693BD902D45341700401A3D /* CalendarDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 6693BD8F2D45341700401A3D /* CalendarDomain */; };
+		6693BD922D45341700401A3D /* CalendarNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 6693BD912D45341700401A3D /* CalendarNetwork */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6693BD6F2D4533A400401A3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +33,7 @@
 		6693BD5E2D4533A300401A3D /* calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6693BD6E2D4533A400401A3D /* calendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = calendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6693BD782D4533A500401A3D /* calendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = calendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6693BD8B2D4533BB00401A3D /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Modules; path = ../Modules; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6693BD902D45341700401A3D /* CalendarDomain in Frameworks */,
+				6693BD8E2D45341700401A3D /* CalendarCore in Frameworks */,
+				6693BD922D45341700401A3D /* CalendarNetwork in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +85,11 @@
 		6693BD552D4533A300401A3D = {
 			isa = PBXGroup;
 			children = (
+				6693BD8B2D4533BB00401A3D /* Modules */,
 				6693BD602D4533A300401A3D /* calendar */,
 				6693BD712D4533A400401A3D /* calendarTests */,
 				6693BD7B2D4533A500401A3D /* calendarUITests */,
+				6693BD8C2D45341700401A3D /* Frameworks */,
 				6693BD5F2D4533A300401A3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +102,13 @@
 				6693BD782D4533A500401A3D /* calendarUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6693BD8C2D45341700401A3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +131,9 @@
 			);
 			name = calendar;
 			packageProductDependencies = (
+				6693BD8D2D45341700401A3D /* CalendarCore */,
+				6693BD8F2D45341700401A3D /* CalendarDomain */,
+				6693BD912D45341700401A3D /* CalendarNetwork */,
 			);
 			productName = calendar;
 			productReference = 6693BD5E2D4533A300401A3D /* calendar.app */;
@@ -552,6 +574,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6693BD8D2D45341700401A3D /* CalendarCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarCore;
+		};
+		6693BD8F2D45341700401A3D /* CalendarDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarDomain;
+		};
+		6693BD912D45341700401A3D /* CalendarNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarNetwork;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6693BD562D4533A300401A3D /* Project object */;
 }

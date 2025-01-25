@@ -97,13 +97,12 @@ public class CalendarViewModel: ObservableObject {
     }
 }
 
-// Add these new types
 public enum LoadingState: Equatable {
     case idle
     case loading
     case error(Error)
     
-    static func == (lhs: LoadingState, rhs: LoadingState) -> Bool {
+    public static func == (lhs: LoadingState, rhs: LoadingState) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle), (.loading, .loading):
             return true
