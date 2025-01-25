@@ -53,5 +53,15 @@ let package = Package(
         .testTarget(
             name: "CalendarNetworkTests",
             dependencies: ["CalendarNetwork"]),
+        
+        .target(
+            name: "CalendarUI",
+            dependencies: [
+                "CalendarCore",
+                "CalendarDomain"
+            ]),
+        .testTarget(
+            name: "CalendarUITests",
+            dependencies: ["CalendarUI"]),
     ]
 )

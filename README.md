@@ -2,6 +2,123 @@
 
 A high-performance iOS calendar application featuring vertical infinite scroll and iCal-compliant event management.
 
+## Requirements
+
+### Functional Requirements:
+
+- User should be able to login using Google Authentication
+- User should be able to create an event
+- User should be able to create a recurring event
+- User should be able to see calendar in a day and monthly view
+- Monthly view should implement smooth vertical scroll
+
+### Non-Functional Requirements:
+- Use pagination/infinite scroll for the monthly view
+- Data should be loaded from the backend on start only
+- Offline mode is not supported
+
+## Infrastructure Diagram
+
+```mermaid
+graph LR
+    subgraph "High Level Components"
+        Auth[Google Auth]
+        API[Supabase API]
+        DB[Database]
+        SBSDK[Supabase SDK]
+        iOS[iOS Client]
+    end
+    
+    iOS --> SBSDK
+    SBSDK --> API
+    API --> Auth
+    API --> DB
+```
+
+## Frontent Design
+
+```mermaid
+graph LR
+    SBSDK[Supabase SDK]
+
+    subgraph "App"
+        DI[Dependency Injection]
+    end
+
+    subgraph "Domain"
+        AuthService[Auth Service]
+        Repository[Repository Interface]
+        Event[Event Entity]
+    end
+    
+    subgraph "Network"
+        AuthServiceLive[Auth Service Impl]
+        RepositoryLive[Repository Impl]
+        EventDTO[Event Data Tranfer Object]
+    end
+
+    subgraph "CalendarUI"
+        MonthView[Monthly View]
+        MonthModel[Monthly Model]
+        DayView[Day View]
+        DayModel[Day Model]
+        AuthView[Auth View]
+        AuthModel[Auth Model]
+    end
+    
+    Network --> Domain
+    Network --> SBSDK
+    MonthModel --> Domain
+    DayModel --> Domain
+    AuthModel --> Domain
+    MonthView --> MonthModel
+    DayView --> DayModel
+    AuthView --> AuthModel
+    App --> Domain
+    App --> Network
+    App --> CalendarUI
+```
+## Data Model
+```mermaid
+erDiagram
+    USER ||--o{ EVENT : creates
+    EVENT ||--o{ RECURRENCE : has
+    EVENT {
+        uuid id
+        string title
+        timestamp start_date
+        timestamp end_date
+        string description
+        uuid user_id
+    }
+    RECURRENCE {
+        uuid id
+        uuid event_id
+        string frequency "daily, weekly, monthly, annual"
+        timestamp until
+    }
+```
+
+## API
+```mermaid
+sequenceDiagram
+    participant Client as iOS Client
+    participant API as Supabase API
+
+    Client->>API: select events { :start_date :end_date :user_id }
+    API->>Client: Response { Array<EventDTO> }
+
+    Client->>API: insert event { :start_date :end_date :user_id }
+    API->>Client: Response { EventDTO  }
+
+    Client->>API: update event { :start_date :end_date :user_id }
+    API->>Client: Response { EventDTO  }
+
+    Client->>API: delete event { :uuid :user_id }
+    API->>Client: Response { :success  }
+```
+
+
 ## System Architecture
 
 ```mermaid
